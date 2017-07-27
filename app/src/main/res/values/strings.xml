@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ToDoListApp</string>
+    <string name="hintToDoField">I must do...</string>
+    <string name="save">save</string>
+    <string name="undo">UNDO</string>
+    <string name="settings">settings</string>
+</resources>
