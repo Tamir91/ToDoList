@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorGreenSoft"
+    android:orientation="vertical"
     tools:context="com.example.tamir.todoapp.MainActivity">
+
+    <ListView
+        android:id="@+id/listView"
+        style="@style/styleForList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <ImageButton
         android:id="@+id/buttonSave"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentRight="true"
-        android:layout_margin="5dp"
+        android:onClick="toAddActivity"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:background="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/plus" />
 
 
-    <Button
+    <!--<Button
         android:id="@+id/buttonSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,30 +34,20 @@
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
         android:text="@string/settings"
-        android:visibility="invisible" />
+        android:visibility="invisible" />-->
 
-    <Button
-        android:id="@+id/buttonUndo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/buttonSettings"
-        android:layout_alignParentRight="true"
-        android:layout_marginHorizontal="5dp"
-        android:text="@string/undo"
-        android:textColor="@color/colorPrimaryDark"
-        android:visibility="invisible" />
+    <!-- <Button
+         android:id="@+id/buttonUndo"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@id/buttonSettings"
+         android:layout_alignParentRight="true"
+         android:layout_marginHorizontal="5dp"
+         android:text="@string/undo"
+         android:textColor="@color/colorPrimaryDark"
+         android:visibility="invisible" />-->
 
-    <Button
-        android:id="@+id/buttonTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/buttonSave"
-        android:layout_marginHorizontal="5dp"
-        android:text="@string/title"
-        android:textColor="@color/colorPrimary" />
-
-    <EditText
+    <!--<EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,24 +55,6 @@
         android:layout_toLeftOf="@id/buttonSave"
         android:hint="@string/hintToDoField"
         android:textColor="@color/colorPrimary"
-        android:textSize="20sp" />
+        android:textSize="20sp" />-->
 
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:hint="@string/title"
-        android:textSize="24sp" />
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/textViewTitle"
-        android:layout_below="@id/buttonSave"></ListView>
-
-</RelativeLayout>
+</FrameLayout>

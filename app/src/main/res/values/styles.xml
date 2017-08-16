@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="styleForList">
+        <item name="android:textStyle">italic</item>
+    </style>
+
 </resources>
