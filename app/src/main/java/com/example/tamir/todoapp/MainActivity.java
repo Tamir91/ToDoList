@@ -19,14 +19,23 @@ import android.widget.Toast;
 
 import com.example.tamir.todoapp.Entities.Note;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    int counter = 0;
     ImageButton buttonSave;
     ListView listView;
     ArrayAdapter arrayAdapter;
     ArrayList<Note> arrayListNotes = new ArrayList<>();
-    private static final int NEW_NOTE = 1;
+    FileInputStream fileInputStream = null;
+    //private static final int NEW_NOTE = 1;
     //ArrayList<String> arrayRecycleBin = new ArrayList<>();
 
     @Override
@@ -37,39 +46,44 @@ public class MainActivity extends AppCompatActivity {
         Context context = this;
         setListeners();
         arrayAdapter = new ArrayAdapter(context, android.R.layout.simple_expandable_list_item_1, arrayListNotes);
-    }
-
-    public void setListeners() {
-        final Context context = this;
+        insertDataToList();
     }
 
     /*This method add new string view to listView*/
-    public void insertDataToList(String str) {
-        Context context = this;
-
+    public void insertDataToList() {
         listView.setAdapter(arrayAdapter);
-        Toast.makeText(this, "Todo was added", Toast.LENGTH_SHORT).show();
+    }
+
+    public  void  setListeners(){
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), EditActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
     public void initViews() {
         buttonSave = (ImageButton) findViewById(R.id.buttonSave);
         listView = (ListView) findViewById(R.id.listView);
+        try {
+            loadData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public void toAddActivity(View view) {
-        Intent intent = new Intent();
-        startActivityForResult(intent, NEW_NOTE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    //@Override
+   /* protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == NEW_NOTE && resultCode == RESULT_OK) {
             String string;
             string = data.getExtras().getString("note");
             insertStringToList(string);
         }
-    }
+    }*/
 
     private boolean insertStringToList(String string) {
         if (arrayListNotes.add(new Note(string))) {
@@ -77,5 +91,22 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    private void loadData() throws IOException{
+
+        fileInputStream = openFileInput("ToDoList" + counter++);
+
+        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+        StringBuilder stringBuilder = new StringBuilder();
+        String line = "";
+        while ((line = bufferedReader.readLine()) != null){
+            stringBuilder.append(line);
+        }
+
+        inputStreamReader.close();
+        Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
     }
 }
