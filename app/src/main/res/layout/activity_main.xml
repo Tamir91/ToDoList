@@ -11,12 +11,11 @@
     <ListView
         android:id="@+id/listView"
         style="@style/styleForList"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <ImageButton
-        android:id="@+id/buttonSave"
-        android:onClick="toAddActivity"
+        android:id="@+id/buttonAdd"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_gravity="end|bottom"
